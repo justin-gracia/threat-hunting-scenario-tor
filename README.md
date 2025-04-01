@@ -46,7 +46,7 @@ DeviceFileEvents
 
 ### 2. Searched the `DeviceProcessEvents` Table
 
-Searched the DeviceProcessEvents table for any **ProcessCommandLine** that contained the string “**tor-browser-windows-x86_64-portable-14.0.9.exe**” Based on the logs returned, at **2025-04-01T13:45:05.7317666Z**, a process was created on **justin-mde-lab-** under the "**labuser**" account. The executable **tor-browser-windows-x86_64-portable-14.0.9.exe** was launched from the Downloads folder (**C:\Users\labuser\Downloads\**). The process was executed with the /s (silent) parameter, suggesting an attempt to install or run the application without user interaction.
+Searched the `DeviceProcessEvents` table for any **ProcessCommandLine** that contained the string “**tor-browser-windows-x86_64-portable-14.0.9.exe**” Based on the logs returned, at **2025-04-01T13:45:05.7317666Z**, a process was created on **justin-mde-lab-** under the "**labuser**" account. The executable **tor-browser-windows-x86_64-portable-14.0.9.exe** was launched from the Downloads folder (**C:\Users\labuser\Downloads\**). The process was executed with the /s (silent) parameter, suggesting an attempt to install or run the application without user interaction.
 
 **Query used to locate event:**
 
@@ -54,7 +54,8 @@ Searched the DeviceProcessEvents table for any **ProcessCommandLine** that conta
 
 DeviceProcessEvents  
 | where DeviceName == "justin-mde-lab-"  
-| where ProcessCommandLine contains "tor-browser-windows-x86_64-portable-14.0.9.exe" 
+| where ProcessCommandLine contains "tor-browser-windows-x86_64-portable-14.0.9.exe"
+| sort by Timestamp desc
 | project Timestamp, DeviceName, AccountName, ActionType, FileName, FolderPath, SHA256, ProcessCommandLine
 ```
 ![image](https://github.com/user-attachments/assets/f7346b5e-4fe1-4322-9aa6-34abb5ae2c0e)
